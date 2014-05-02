@@ -15,3 +15,7 @@ Run with:
 
   frob shufflecomp
 
+The shufflecomp.t file can also be run with Gargoyle or QTads.
+
+  http://ccxvii.net/gargoyle/
+  http://qtads.sourceforge.net/

@@ -47,14 +47,14 @@ versionInfo: GameID
 
 bedroom: Room 'Bedroom'
   """
-  This is your bedroom. To the north stretches a long hallway.
+  This is your bedroom. To the north stretches a long hallway, lit at the far end by the light of the dawn.
   <<if me.newDay>>\bAnother day is born, rise up!<<end>>
   """
   roomDesc() {
     inherited;
     me.newDay = nil;
   }
-  north = hallway
+  north: TravelMessage { ->hallway "Eyes wide open, you tread wisely down the length of the hallway." }
 ;
 
 VerbRule(RiseUp)
@@ -132,24 +132,31 @@ light: DeadEndConnector
 DefineIAction(Hypnotize)
   execAction() {
     """
+    ~o~\b
     <<one of>>
-    The light is not coming from (just) the sun, but from all the stars in the sky.
-    We are made of the stars, you and I; the light from each star has been traveling for years, or eons,
-    to reach us.
-    \bYou are hypnotized by Space and time.
+    The light is not coming from (just) the sun, but from all the stars in the sky. The light from each star
+    has been traveling for years or eons to reach your eyes, while the matter that makes up your body and
+    everything you know also came from the stars long before that.
+    \b~o~\bYou are hypnotized by Space and time.
     <<or>>
     The light of the dawn filters through an enormous tree, whose trunk divides into branches, whose branches
-    divide into twigs, whose twigs carry leaves.  Each leaf has veins the divide into smaller and smaller
-    veins.
-    \bYou are hypnotized by Leaves and branches.
+    divide into twigs, whose twigs carry leaves.  Each leaf has veins that branch into smaller and smaller
+    veins, bringing water and minerals to every chlorophyllic cell.
+    \b~o~\bYou are hypnotized by Leaves and branches.
     <<or>>
-    TODO: eye of Marduk (or Tiamat?) made up of smaller quantic eyes
-    \bYou are hypnotized by Eyes and souls.
+    The light is emanating from a giant eye, the eye of Enki, from Ki-En-Gir, the land of the lords of brightness.
+    The eye is a disc of smaller eyes, and each smaller eye is itself a disc of smaller eyes, and so on, until
+    you can make out the smallest quantic layer of eyes. They look back at you, unblinking.
+    \b~o~\bYou are hypnotized by Eyes and souls.
     <<or>>
-    TODO: wheels within wheels never turning
-    \bYou are hypnotized by Eternity and stillness.
+    The light beams from the center of a rapidly spinning wheel. Around that wheel is a larger wheel, spinning
+    once for every ten revolutions of the inner wheel. Around that wheel is a still larger wheel, spinning ten
+    times slower, and so on, out to the outermost wheel which is perfectly motionless.
+    \b~o~\bYou are hypnotized by Eternity and stillness.
     <<or>>
-    \bYou are hypnotized by Patterns? P?
+    The light decomposes into a lattice of lines and angles, strobing from side to side and up and down. The
+    steady movement of lines across intersecting lines forms a periodic syncopation in alternating dimensions.
+    \b~o~\bYou are hypnotized by Patterns and rhythms.
     <<cycling>>\b
     """;
 
