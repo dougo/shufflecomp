@@ -170,3 +170,10 @@ DefineIAction(Hypnotize)
     me.lookAround(true);
   }
 ;
+
+modify HintAction
+  execSystemAction() {
+    "Look around the corner, tell me what do you see?";
+  }
+;
+
