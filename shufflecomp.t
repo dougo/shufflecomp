@@ -68,11 +68,15 @@ VerbRule(RiseUp)
   newDay = true
   posture = lying
   goToSleep() {
-    if (isIn(bedroom)) {
-      // TODO: first lie down if needed
+    if (isDirectlyIn(bedroom)) {
+      tryImplicitAction(LieOn, bed);
+    }
+    if (isDirectlyIn(bed)) {
+      if (posture != lying) {
+        tryImplicitAction(Lie);
+      }
       """
-      You lie down in your bed and close your eyes.  You swiftly drift off to sleep, to the gently pulsating
-      sound of violins...\b
+      You close your eyes and swiftly drift off to sleep, to the gently pulsating sound of violins...\b
       """;
       inputManager.pauseForMore(true);
       cls();
