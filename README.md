@@ -13,9 +13,9 @@ Compile with:
 
 Run with:
 
-  frob shufflecomp
+  frob lookaroundthecorner
 
-The shufflecomp.t file can also be run with Gargoyle or QTads.
+The lookaroundthecorner.t3 file can also be run with Gargoyle or QTads.
 
   http://ccxvii.net/gargoyle/
   http://qtads.sourceforge.net/

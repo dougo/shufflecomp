@@ -1,4 +1,4 @@
 obj/*
 !obj/.keep
 GameInfo.txt
-shufflecomp.t3
+*.t3
