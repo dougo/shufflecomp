@@ -1,0 +1,4 @@
+obj/*
+!obj/.keep
+GameInfo.txt
+shufflecomp.t3
