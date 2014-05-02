@@ -9,13 +9,12 @@ First, install FrobTADS:
 
 Compile with:
 
-  t3make -d -f shufflecomp
+  t3make -f shufflecomp
 
 Run with:
 
   frob lookaroundthecorner
 
-The lookaroundthecorner.t3 file can also be run with Gargoyle or QTads.
+The lookaroundthecorner.t3 file can also be run with QTads.
 
-  http://ccxvii.net/gargoyle/
   http://qtads.sourceforge.net/
