@@ -85,26 +85,19 @@ VerbRule(RiseUp)
   newDay = true
   posture = lying
   goToSleep() {
-    if (isDirectlyIn(bedroom)) {
-      tryImplicitAction(LieOn, bed);
+    if (posture != lying) {
+      tryImplicitAction(Lie);
     }
-    if (isDirectlyIn(bed)) {
-      if (posture != lying) {
-        tryImplicitAction(Lie);
-      }
-      """
-      You close your eyes and swiftly drift off to sleep, to the gently pulsating sound of violins...\b
-      """;
-      inputManager.pauseForMore(true);
-      cls();
-      """
-      You wake up to the sound and smell of sizzling bacon drifting in from down the hall.\b
-      "Dear, were you sleepwalking again?"
-      """;
-      finishGameMsg('You have woken up.', []);
-    } else {
-      inherited;
-    }
+    """
+    You close your eyes and swiftly drift off to sleep, to the gently pulsating sound of violins...\b
+    """;
+    inputManager.pauseForMore(true);
+    cls();
+    """
+    You wake up to the sound and smell of sizzling bacon drifting in from down the hall.\b
+    "Dear, were you sleepwalking again?"
+    """;
+    finishGameMsg('You have woken up.', []);
   }
 ;
 
