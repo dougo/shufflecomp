@@ -23,8 +23,8 @@ versionInfo: GameID
   authorEmail = 'Robert Whitlock <rwshuffle@gmail.com>'
   desc = 'An interactive fiction inspired by the song "Look Around The Corner" by Quantic & Alice Russell
           with the Combo Bárbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
-  version = '1'
-  releaseDate = '2014-05-01'
+  version = '2'
+  releaseDate = '2014-05-10'
   forgiveness = 'Merciful'
   licenseType = 'Freeware'
   copyingRules = 'No Restrictions'
@@ -55,6 +55,18 @@ bedroom: Room 'Bedroom'
     me.newDay = nil;
   }
   north: TravelMessage { ->hallway "Eyes wide open, you tread wisely down the length of the hallway." }
+  out asExit(north)
+  down: NoTravelMessage {
+    dobjFor(TravelVia) {
+      remap = (me.posture == standing) ? [LieAction] : [LieOnAction, defaultFloor]
+    }
+  }
+  up: NoTravelMessage {
+    dobjFor(TravelVia) {
+      remap = (me.posture == standing) ? inherited() : [StandAction]
+      action() { bedroom.cannotTravel(); }
+    }
+  }
 ;
 
 VerbRule(RiseUp)
@@ -62,6 +74,11 @@ VerbRule(RiseUp)
 ;
 
 +bed: Bed, Heavy 'bed' 'bed'
+  out asExit(bedroom.north)
+  up = noTravelOut
+  down: NoTravelMessage {
+    dobjFor(TravelVia) remapTo(Lie)
+  }
 ;
 
 ++me: Actor
