@@ -11,6 +11,7 @@ gameMain: GameMainDef
     Release <<versionInfo.version>> (<<versionInfo.serialNum>>)\b
     First-time players should type ABOUT.\b
     """;
+    libGlobal.scoreObj = nil;
   }
 ;
 
@@ -38,6 +39,7 @@ versionInfo: GameID
      source code on request. (It will be published on Github after the competition is over.)
      """;
   }
+  showCredit() { showAbout(); }
 ;
 
 bedroom: Room 'Bedroom'
@@ -107,6 +109,8 @@ hallway: Room 'Hallway'
   east = light
 
   actorKnowsDestination(actor, connector) { return true; }
+
+  // TODO: x light, x dawn, go to light? enter light?
 ;
 
 DefineTAction(LookAround);
@@ -116,7 +120,8 @@ VerbRule(LookAround)
   verbPhrase = 'look/looking around (what)'
 ;
 
-+corner: RoomPart 'corner'
++corner: RoomPart 'corner' 'corner'
+  // TODO: x corner should look into the light.
   dobjFor(LookAround) {
     action() {
       "You look around the corner, into the light.\b";
@@ -191,3 +196,4 @@ modify HintAction
   }
 ;
 
+// TODO: xyzzy?
