@@ -23,7 +23,7 @@ versionInfo: GameID
   desc = 'An interactive fiction inspired by the song "Look Around The Corner" by Quantic & Alice Russell
           with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
   version = '2'
-  releaseDate = '2014-05-10'
+  releaseDate = '2014-05-11'
   forgiveness = 'Merciful'
   licenseType = 'Freeware'
   copyingRules = 'No Restrictions'
@@ -32,14 +32,10 @@ versionInfo: GameID
      """
      <<desc>>\b
 
-     This is the beta version. Really more like alpha. It was meant to be small and simple, but not as barren
-     and boring as it is right now. Sorry about that. I hope to flesh this out a bit more before the final
-     release, but we'll see.\b
+     Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Carolyn VanEseltine, and Caleb Wilson.\b
 
-     Please feel free to send me any and all ideas and suggestions, in addition to bug reports. I am also happy
-     to provide the TADS 3 source code on request. Mail me at rwshuffle@gmail.com.\b
-
-     What do you, the playtester, do?
+     Please send bug reports and other feedback to rwshuffle@gmail.com. I am also happy to provide the TADS 3
+     source code on request. (It will be published on Github after the competition is over.)
      """;
   }
 ;
