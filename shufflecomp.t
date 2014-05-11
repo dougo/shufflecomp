@@ -1,4 +1,3 @@
-#charset "utf-8"
 #include <adv3.h>
 #include <en_us.h>
 
@@ -22,7 +21,7 @@ versionInfo: GameID
   byline = 'by Robert Whitlock'
   authorEmail = 'Robert Whitlock <rwshuffle@gmail.com>'
   desc = 'An interactive fiction inspired by the song "Look Around The Corner" by Quantic & Alice Russell
-          with the Combo Bárbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
+          with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
   version = '2'
   releaseDate = '2014-05-10'
   forgiveness = 'Merciful'
@@ -83,6 +82,7 @@ VerbRule(RiseUp)
 
 ++me: Actor
   newDay = true
+  days = 0
   posture = lying
   goToSleep() {
     if (posture != lying) {
@@ -140,6 +140,13 @@ light: DeadEndConnector
 ;
 
 DefineIAction(Hypnotize)
+  highlight(text) {
+    if (me.days < 5) {
+      "<<text>>";
+    } else {
+      "<b><u><<text>></u></b>";
+    }
+  }
   execAction() {
     """
     ~o~\b
@@ -147,31 +154,32 @@ DefineIAction(Hypnotize)
     The light is not coming from (just) the sun, but from all the stars in the sky. The light from each star
     has been traveling for years or eons to reach your eyes, while the matter that makes up your body and
     everything you know also came from the stars long before that.
-    \b~o~\bYou are hypnotized by Space and time.
+    \b~o~\bYou are hypnotized by <<highlight('S')>>pace and time.
     <<or>>
     The light of the dawn filters through an enormous tree, whose trunk divides into branches, whose branches
     divide into twigs, whose twigs carry leaves.  Each leaf has veins that branch into smaller and smaller
     veins, bringing water and minerals to every chlorophyllic cell.
-    \b~o~\bYou are hypnotized by Leaves and branches.
+    \b~o~\bYou are hypnotized by <<highlight('L')>>eaves and branches.
     <<or>>
     The light is emanating from a giant eye, the eye of Enki, from Ki-En-Gir, the land of the lords of brightness.
     The eye is a disc of smaller eyes, and each smaller eye is itself a disc of smaller eyes, and so on, until
     you can make out the smallest quantic layer of eyes. They look back at you, unblinking.
-    \b~o~\bYou are hypnotized by Eyes and souls.
+    \b~o~\bYou are hypnotized by <<highlight('E')>>yes and souls.
     <<or>>
     The light beams from the center of a rapidly spinning wheel. Around that wheel is a larger wheel, spinning
     once for every ten revolutions of the inner wheel. Around that wheel is a still larger wheel, spinning ten
     times slower, and so on, out to the outermost wheel which is perfectly motionless.
-    \b~o~\bYou are hypnotized by Eternity and stillness.
+    \b~o~\bYou are hypnotized by <<highlight('E')>>ternity and stillness.
     <<or>>
     The light decomposes into a lattice of lines and angles, strobing from side to side and up and down. The
     steady movement of lines across intersecting lines forms a periodic syncopation in alternating dimensions.
-    \b~o~\bYou are hypnotized by Patterns and rhythms.
+    \b~o~\bYou are hypnotized by <<highlight('P')>>atterns and rhythms.
     <<cycling>>\b
     """;
 
     inputManager.pauseForMore(true);
     cls();
+    me.days++;
     me.newDay = true;
 
     me.moveIntoForTravel(bed);
