@@ -42,17 +42,16 @@ versionInfo: GameID
   showCredit() { showAbout(); }
 ;
 
-bedroom: Room 'Bedroom'
+bedroom: Room 'Bedroom' 
   """
   This is your bedroom, or at least you think it is. The room is mostly very dim and indistinct. To the north
   stretches a long hallway, lit at the far end by the new light of the dawn.
 
-  <<if me.newDay>>\bAnother day is
-    <<one of>>born<<or>>born<<or>>born<<or>>here<<as decreasingly likely outcomes>>,
-  rise up!<<end>>
+  <<if me.newDay>><<beginDay>><<end>>
   """
-  roomDesc() {
-    inherited;
+  beginDay() {
+    "\bAnother day is <<one of>>born<<or>>born<<or>>here<<as decreasingly likely outcomes>>,
+     rise up!";
     me.newDay = nil;
   }
   north: TravelMessage { ->hallway "Eyes wide open, you tread wisely down the length of the hallway." }
@@ -68,8 +67,19 @@ bedroom: Room 'Bedroom'
       action() { bedroom.cannotTravel(); }
     }
   }
+;
 
-  // TODO: x hallway
++Fixture 'bedroom/room/here' 'bedroom'
+  "You can't make out anything in the room, other than the hallway to the north lit at the end by the dawn light."
+;
+
++Fixture 'hall/hallway' 'hallway'
+  "The hallway stretches north, then turns to the east, into the dawn light."
+  dobjFor(Enter) remapTo(TravelVia, hallway)
+;
+
++Distant 'new light of the dawn dawn/light' 'light'
+  "At the end of the hallway, the new light of the dawn streams in from around the corner."
 ;
 
 VerbRule(RiseUp)
@@ -103,7 +113,7 @@ VerbRule(RiseUp)
     """;
     finishGameMsg('You have woken up.', []);
   }
-  // TODO: tell/sing/talk
+  // TODO: tell/sing/talk/wake
 ;
 
 +++Component 'eyes' 'eyes'
