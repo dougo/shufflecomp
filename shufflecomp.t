@@ -44,8 +44,12 @@ versionInfo: GameID
 
 bedroom: Room 'Bedroom'
   """
-  This is your bedroom. To the north stretches a long hallway, lit at the far end by the light of the dawn.
-  <<if me.newDay>>\bAnother day is born, rise up!<<end>>
+  This is your bedroom, or at least you think it is. The room is mostly very dim and indistinct. To the north
+  stretches a long hallway, lit at the far end by the new light of the dawn.
+
+  <<if me.newDay>>\bAnother day is
+    <<one of>>born<<or>>born<<or>>born<<or>>here<<as decreasingly likely outcomes>>,
+  rise up!<<end>>
   """
   roomDesc() {
     inherited;
@@ -79,6 +83,8 @@ VerbRule(RiseUp)
 ;
 
 ++me: Actor
+  pcDesc = "You have been yourself since the earliest recording of time.
+            You will be yourself till our days are done."
   newDay = true
   days = 0
   posture = lying
@@ -101,7 +107,7 @@ VerbRule(RiseUp)
 
 hallway: Room 'Hallway'
   """
-  Here at the north end of the hallway, the new light of the dawn streams in from around the corner to the east.
+  Here at the north end of the hallway, the dawn light streams in from around the corner to the east.
   Back to the south is your bedroom.
   """
 
@@ -141,6 +147,30 @@ light: DeadEndConnector
 ;
 
 DefineIAction(Hypnotize)
+  dawn() {
+    """
+    <<one of>>
+    The light is not coming from (just) the sun, but from all the stars in the sky. The light from each star
+    has been traveling for years or eons to reach your eyes, while the matter that makes up your body and
+    everything you know also came from the stars long before that.
+    <<or>>
+    The light of the dawn filters through an enormous tree, whose trunk divides into branches, whose branches
+    divide into twigs, whose twigs carry leaves.  Each leaf has veins that branch into smaller and smaller
+    veins, bringing water and minerals to every chlorophyllic cell.
+    <<or>>
+    The light is emanating from a giant eye, the eye of Enki, from Ki-En-Gir, the land of the lords of brightness.
+    The eye is a disc of smaller eyes, and each smaller eye is itself a disc of smaller eyes, and so on, until
+    you can make out the smallest quantic layer of eyes. They look back at you, unblinking.
+    <<or>>
+    The light beams from the center of a rapidly spinning wheel. Around that wheel is a larger wheel, spinning
+    once for every ten revolutions of the inner wheel. Around that wheel is a still larger wheel, spinning ten
+    times slower, and so on, out to the outermost wheel which is perfectly motionless.
+    <<or>>
+    The light decomposes into a lattice of lines and angles, strobing from side to side and up and down. The
+    steady movement of lines across intersecting lines forms a periodic syncopation in alternating dimensions.
+    <<cycling>>
+    """;
+  }
   highlight(text) {
     if (me.days < 5) {
       "<<text>>";
@@ -148,35 +178,30 @@ DefineIAction(Hypnotize)
       "<b><u><<text>></u></b>";
     }
   }
+  hypnosis() {
+    """
+    <<one of>>
+    <<highlight('S')>>pace and time
+    <<or>>
+    <<highlight('L')>>eaves and branches
+    <<or>>
+    <<highlight('E')>>yes and souls
+    <<or>>
+    <<highlight('E')>>ternity and stillness
+    <<or>>
+    <<highlight('P')>>atterns and rhythms
+    <<cycling>>
+    """;
+  }
   execAction() {
     """
     ~o~\b
-    <<one of>>
-    The light is not coming from (just) the sun, but from all the stars in the sky. The light from each star
-    has been traveling for years or eons to reach your eyes, while the matter that makes up your body and
-    everything you know also came from the stars long before that.
-    \b~o~\bYou are hypnotized by <<highlight('S')>>pace and time.
-    <<or>>
-    The light of the dawn filters through an enormous tree, whose trunk divides into branches, whose branches
-    divide into twigs, whose twigs carry leaves.  Each leaf has veins that branch into smaller and smaller
-    veins, bringing water and minerals to every chlorophyllic cell.
-    \b~o~\bYou are hypnotized by <<highlight('L')>>eaves and branches.
-    <<or>>
-    The light is emanating from a giant eye, the eye of Enki, from Ki-En-Gir, the land of the lords of brightness.
-    The eye is a disc of smaller eyes, and each smaller eye is itself a disc of smaller eyes, and so on, until
-    you can make out the smallest quantic layer of eyes. They look back at you, unblinking.
-    \b~o~\bYou are hypnotized by <<highlight('E')>>yes and souls.
-    <<or>>
-    The light beams from the center of a rapidly spinning wheel. Around that wheel is a larger wheel, spinning
-    once for every ten revolutions of the inner wheel. Around that wheel is a still larger wheel, spinning ten
-    times slower, and so on, out to the outermost wheel which is perfectly motionless.
-    \b~o~\bYou are hypnotized by <<highlight('E')>>ternity and stillness.
-    <<or>>
-    The light decomposes into a lattice of lines and angles, strobing from side to side and up and down. The
-    steady movement of lines across intersecting lines forms a periodic syncopation in alternating dimensions.
-    \b~o~\bYou are hypnotized by <<highlight('P')>>atterns and rhythms.
-    <<cycling>>\b
+    <<dawn>>\b
+    ~o~\b
+    So enchanted, hypnotized by <<hypnosis>>... Who knows if this is all there is?\b
+    Come the morning, we get to start anew.\n
     """;
+    // TODO: why is there a space before the ellipsis??
 
     inputManager.pauseForMore(true);
     cls();
