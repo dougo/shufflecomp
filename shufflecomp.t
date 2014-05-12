@@ -68,6 +68,8 @@ bedroom: Room 'Bedroom'
       action() { bedroom.cannotTravel(); }
     }
   }
+
+  // TODO: x hallway
 ;
 
 VerbRule(RiseUp)
@@ -89,9 +91,7 @@ VerbRule(RiseUp)
   days = 0
   posture = lying
   goToSleep() {
-    if (posture != lying) {
-      tryImplicitAction(Lie);
-    }
+    if (posture != lying) { tryImplicitAction(Lie); }
     """
     You close your eyes and swiftly drift off to sleep, to the gently pulsating sound of violins...\b
     """;
@@ -102,6 +102,21 @@ VerbRule(RiseUp)
     "Dear, were you sleepwalking again?"
     """;
     finishGameMsg('You have woken up.', []);
+  }
+  // TODO: tell/sing/talk
+;
+
++++Component 'eyes' 'eyes'
+  "They are wide open."
+  isPlural = true
+  dobjFor(Open) {
+    verify() { illogical('They are wide open.'); }
+  }
+  dobjFor(Close) {
+    verify() { }
+    action() {
+      "You close your eyes for a few seconds, but the dawn light seeps in, beckoning.";
+    }
   }
 ;
 
