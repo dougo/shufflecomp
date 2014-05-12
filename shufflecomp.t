@@ -113,7 +113,6 @@ VerbRule(RiseUp)
     """;
     finishGameMsg('You have woken up.', []);
   }
-  // TODO: tell/sing/talk/wake
 ;
 
 +++Component 'eyes' 'eyes'
@@ -242,6 +241,28 @@ DefineIAction(Hypnotize)
     "\b";
     me.lookAround(true);
   }
+;
+
+DefineIAction(Sing)
+  execAction() {
+    "You sing of your sadness. There is no reply.";
+  }
+;
+
+VerbRule(Sing)
+  'sing' : SingAction
+  verbPhrase = 'sing/singing'
+;
+
+DefineIAction(Wake)
+  execAction() {
+    "You are awake. You are awake. Yes, you are awake.";
+  }
+;
+
+VerbRule(Wake)
+  'wake' | 'wake' 'up' | 'awake' : WakeAction
+  verbPhrase = 'wake/waking'
 ;
 
 modify HintAction
