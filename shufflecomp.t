@@ -33,8 +33,8 @@ versionInfo: GameID
      """
      <<desc>>\b
 
-     Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Carolyn VanEseltine, Olly V.,
-     and Caleb Wilson.\b
+     Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Zach Samuels, Carolyn VanEseltine,
+     Olly V., and Caleb Wilson.\b
 
      Please send bug reports and other feedback to rwshuffle@gmail.com. I am also happy to provide the TADS 3
      source code on request. (It will be published on Github after the competition is over.)
