@@ -218,17 +218,11 @@ DefineIAction(Hypnotize)
   hypnosis() {
     """
     <<one of>>
-    <<highlight('S')>>pace and time
-    <<or>>
-    <<highlight('L')>>eaves and branches
-    <<or>>
-    <<highlight('E')>>yes and souls
-    <<or>>
-    <<highlight('E')>>ternity and stillness
-    <<or>>
-    <<highlight('P')>>atterns and rhythms
-    <<cycling>>
-    """;
+    <<highlight('S')>>pace and time<<or>>
+    <<highlight('L')>>eaves and branches<<or>>
+    <<highlight('E')>>yes and souls<<or>>
+    <<highlight('E')>>ternity and stillness<<or>>
+    <<highlight('P')>>atterns and rhythms<<cycling>>""";
   }
   execAction() {
     """
@@ -238,7 +232,6 @@ DefineIAction(Hypnotize)
     So enchanted, hypnotized by <<hypnosis>>... Who knows if this is all there is?\b
     Come the morning, we get to start anew.\n
     """;
-    // TODO: why is there a space before the ellipsis??
 
     inputManager.pauseForMore(true);
     cls();
