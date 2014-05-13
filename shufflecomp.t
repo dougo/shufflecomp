@@ -43,7 +43,7 @@ versionInfo: GameID
   showCredit() { showAbout(); }
 ;
 
-bedroom: Room 'Bedroom' 
+bedroom: Room 'Bedroom'
   """
   This is your bedroom, or at least you think it is. The room is mostly very dim and indistinct. To the north
   stretches a long hallway, lit at the far end by the new light of the dawn<<if me.days>>. The light looks
@@ -141,6 +141,9 @@ hallway: Room 'Hallway'
   east = intoLight
 
   actorKnowsDestination(actor, connector) { return true; }
+
+  // Replace defaultEastWall so we can override LOOK EAST.
+  roomParts = [defaultFloor, defaultCeiling, defaultNorthWall, defaultSouthWall, lightWall, defaultWestWall]
 ;
 
 DefineTAction(LookAround);
@@ -157,7 +160,7 @@ VerbRule(LookAround)
       replaceAction(Hypnotize);
     }
   }
-  dobjFor(Examine) remapTo(LookAround, corner);
+  dobjFor(Examine) remapTo(LookAround, corner)
 ;
 
 +light: Fixture 'new light of the dawn dawn/light' 'light'
@@ -166,9 +169,11 @@ VerbRule(LookAround)
   dobjFor(Enter) remapTo(TravelVia, intoLight)
 ;
 
-intoLight: DeadEndConnector
-  // TODO: LOOK EAST
+lightWall: DefaultWall 'east wall/e'
+  dobjFor(Examine) remapTo(LookAround, corner)
+;
 
+intoLight: DeadEndConnector
   // TODO: this shows the exit as "east, to the light". Better would be "east, into the light",
   // or "east, around the corner". Need to make a new subclass of ExitLister?
   apparentDestName = 'the light'
@@ -276,3 +281,15 @@ modify HintAction
 ;
 
 // TODO: xyzzy?
+
+DefineTAction(WTF);
+
+VerbRule(WTF)
+  'wtf' singleDobj : WTFAction
+;
+
+modify VocabObject
+  dobjFor(WTF) {
+    action() { "HELLO WTF {the dobj/him}"; }
+  }
+;
