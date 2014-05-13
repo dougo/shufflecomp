@@ -296,3 +296,14 @@ modify VocabObject
     action() { "HELLO WTF {the dobj/him}"; }
   }
 ;
+
+modify playerMessages
+  askUnknownWord(actor, txt) {
+    if (txt.compareIgnoreCase('xyzzy') == 0) {
+      "<.parser>The word <q><<txt>></q> is not necessary in this story... OR IS IT?<./parser>";
+      oopsNote();
+    } else {
+      inherited(actor, txt);
+    }
+  }
+;
