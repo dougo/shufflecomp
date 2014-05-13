@@ -138,7 +138,7 @@ hallway: Room 'Hallway'
   """
 
   south = bedroom
-  east = intoLight
+  east = aroundCorner
 
   actorKnowsDestination(actor, connector) { return true; }
 
@@ -166,20 +166,30 @@ VerbRule(LookAround)
 +light: Fixture 'new light of the dawn dawn/light' 'light'
   dobjFor(Examine) remapTo(LookAround, corner)
   dobjFor(LookIn) remapTo(LookAround, corner)
-  dobjFor(Enter) remapTo(TravelVia, intoLight)
+  dobjFor(Enter) remapTo(TravelVia, aroundCorner)
 ;
 
-lightWall: DefaultWall 'east wall/e'
+lightWall: DefaultWall
+  adjective = 'e' 'east'
+  name = 'east wall'
   dobjFor(Examine) remapTo(LookAround, corner)
 ;
 
-intoLight: DeadEndConnector
-  // TODO: this shows the exit as "east, to the light". Better would be "east, into the light",
-  // or "east, around the corner". Need to make a new subclass of ExitLister?
-  apparentDestName = 'the light'
+aroundCorner: DeadEndConnector
+  apparentDestName = 'around the corner'
   travelDesc() {
     "You step around the corner, into the light.\b";
     replaceAction(Hypnotize);
+  }
+;
+
+modify explicitExitLister
+  showListItem(obj, options, pov, infoTab) {
+    if (obj.dest_ && obj.dest_.connector == aroundCorner) {
+      " east, <<obj.destName_>>"; // instead of "east, to <<obj.destName_>>"
+    } else {
+      inherited(obj, options, pov, infoTab);
+    }
   }
 ;
 
