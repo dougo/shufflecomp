@@ -23,8 +23,8 @@ versionInfo: GameID
   authorEmail = 'Robert Whitlock <rwshuffle@gmail.com>'
   desc = 'An interactive fiction inspired by the song "Look Around The Corner" by Quantic & Alice Russell
           with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
-  version = '2'
-  releaseDate = '2014-05-11'
+  version = '3'
+  releaseDate = '2014-05-12'
   forgiveness = 'Merciful'
   licenseType = 'Freeware'
   copyingRules = 'No Restrictions'
@@ -33,7 +33,8 @@ versionInfo: GameID
      """
      <<desc>>\b
 
-     Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Carolyn VanEseltine, and Caleb Wilson.\b
+     Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Carolyn VanEseltine, Olly V.,
+     and Caleb Wilson.\b
 
      Please send bug reports and other feedback to rwshuffle@gmail.com. I am also happy to provide the TADS 3
      source code on request. (It will be published on Github after the competition is over.)
@@ -45,7 +46,8 @@ versionInfo: GameID
 bedroom: Room 'Bedroom' 
   """
   This is your bedroom, or at least you think it is. The room is mostly very dim and indistinct. To the north
-  stretches a long hallway, lit at the far end by the new light of the dawn.
+  stretches a long hallway, lit at the far end by the new light of the dawn<<if me.days>>. The light looks
+  a little different than it did yesterday<<end>>.
 
   <<if me.newDay>><<beginDay>><<end>>
   """
@@ -165,6 +167,8 @@ VerbRule(LookAround)
 ;
 
 intoLight: DeadEndConnector
+  // TODO: LOOK EAST
+
   // TODO: this shows the exit as "east, to the light". Better would be "east, into the light",
   // or "east, around the corner". Need to make a new subclass of ExitLister?
   apparentDestName = 'the light'
