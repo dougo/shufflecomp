@@ -1,3 +1,20 @@
+// Copyright 2014 Doug Orleans.
+//
+// This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
+// General Public License as published by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public
+// License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License along with this program.  If not,
+// see: http://www.gnu.org/licenses/agpl-3.0.html
+//
+// This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view
+// a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+// Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
 #include <adv3.h>
 #include <en_us.h>
 
@@ -6,7 +23,7 @@ gameMain: GameMainDef
   showIntro() {
     """
     "Sing to me of your sadness and tell me of your joy..."\b
-    <b><<versionInfo.name>>: <<versionInfo.headline>></b>\n
+    <b><<versionInfo.name>></b>\n
     <<versionInfo.byline>>\n
     Release <<versionInfo.version>> (<<versionInfo.serialNum>>)\b
     First-time players should type ABOUT.\b
@@ -17,14 +34,14 @@ gameMain: GameMainDef
 
 versionInfo: GameID
   IFID = '853AF89C-7D32-49EE-85FA-77A49F1ACD99'
-  name = 'Look Around The Corner'
-  headline = 'A ShuffleComp entry'
-  byline = 'by Robert Whitlock'
-  authorEmail = 'Robert Whitlock <rwshuffle@gmail.com>'
-  desc = 'An interactive fiction inspired by the song "Look Around The Corner" by Quantic & Alice Russell
-          with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
-  version = '3'
-  releaseDate = '2014-05-12'
+  name = 'Look Around the Corner'
+  byline = 'by Doug Orleans (as Robert Whitlock)'
+  authorEmail = 'Doug Orleans <dougorleans@gmail.com>'
+  desc = 'An interactive fiction (an entry in ShuffleComp 2014) inspired by the song "Look Around the Corner"
+          by Quantic & Alice Russell with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
+  version = '4'
+  releaseDate = '2014-06-03'
+  firstPublished = '2014-05-12'
   forgiveness = 'Merciful'
   licenseType = 'Freeware'
   copyingRules = 'No Restrictions'
@@ -34,10 +51,14 @@ versionInfo: GameID
      <<desc>>\b
 
      Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Zach Samuels, Carolyn VanEseltine,
-     Olly V., and Caleb Wilson.\b
+     Olly V., and Caleb Wilson.  Also thanks to Sam Kabo Ashwell for organizing the competition, and thanks to
+     Caleb Wilson, Andrew Schultz, and Jason Dyer for posting positive reviews during the comp. :)\b
 
-     Please send bug reports and other feedback to rwshuffle@gmail.com. I am also happy to provide the TADS 3
-     source code on request. (It will be published on Github after the competition is over.)
+     Extra-special thanks to the Mysterious Strangers who submitted the song "Look Around the Corner" and
+     the pseudonym "Robert Whitlock". I hope to learn your identities some day so I can properly thank you here!\b
+
+     Please send feedback to dougorleans@gmail.com. The source code is available (under the AGPLv3) on GitHub,
+     where you can also submit bug reports: http://github.com/dougo/shufflecomp
      """;
   }
   showCredit() { showAbout(); }
@@ -282,8 +303,6 @@ modify HintAction
     "Look around the corner, tell me what do you see?";
   }
 ;
-
-// TODO: xyzzy?
 
 DefineTAction(WTF);
 
