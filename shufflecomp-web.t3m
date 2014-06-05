@@ -1,0 +1,11 @@
+-D TADS_INCLUDE_NET
+-D LANGUAGE=en_us
+-D MESSAGESTYLE=neu
+-Fy obj -Fo obj
+-o lookaroundthecorner-web.t3
+-lib system
+-lib adv3/adv3web
+-lib webui
+-source tadsnet
+-source shufflecomp
+-res GameInfo.txt

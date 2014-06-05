@@ -20,6 +20,13 @@ The lookaroundthecorner.t3 file can also be run with QTads.
 
   http://qtads.sourceforge.net/
 
+To compile for Web play:
+
+  t3make -f shufflecomp-web
+
+TODO: this is not actually working for me yet...
+
+
 License
 =======
 
