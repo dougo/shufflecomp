@@ -1,4 +1,5 @@
-// Copyright 2014 Doug Orleans.
+#charset "UTF-8"
+// Copyright © 2014 Doug Orleans.
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
 // General Public License as published by the Free Software Foundation, either version 3 of the License, or
@@ -26,7 +27,7 @@ gameMain: GameMainDef
     <b><<versionInfo.name>></b>\n
     <<versionInfo.byline>>\n
     Release <<versionInfo.version>> (<<versionInfo.serialNum>>)\b
-    First-time players should type ABOUT.\b
+    First-time players should type <<aHref('ABOUT', 'ABOUT')>>.\b
     """;
     libGlobal.scoreObj = nil;
   }
@@ -38,9 +39,9 @@ versionInfo: GameID
   byline = 'by Doug Orleans (as Robert Whitlock)'
   authorEmail = 'Doug Orleans <dougorleans@gmail.com>'
   desc = 'An interactive fiction (an entry in ShuffleComp 2014) inspired by the song "Look Around the Corner"
-          by Quantic & Alice Russell with the Combo B&aacute;rbaro. https://www.youtube.com/watch?v=p4yJp4CLRL4'
-  version = '4'
-  releaseDate = '2014-06-03'
+          by Quantic & Alice Russell with the Combo Bárbaro.'
+  version = '5'
+  releaseDate = '2014-06-12'
   firstPublished = '2014-05-12'
   forgiveness = 'Merciful'
   licenseType = 'Freeware'
@@ -48,7 +49,9 @@ versionInfo: GameID
   serialNum = static releaseDate.findReplace('-', '', ReplaceAll, 1)
   showAbout() {
      """
-     <<desc>>\b
+     An interactive fiction (an entry in ShuffleComp 2014) inspired by the song
+     <<link('http://www.youtube.com/watch?v=p4yJp4CLRL4',
+            '"Look Around the Corner" by Quantic & Alice Russell with the Combo Bárbaro.')>>\b
 
      Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Zach Samuels, Carolyn VanEseltine,
      Olly V., and Caleb Wilson.  Also thanks to Sam Kabo Ashwell for organizing the competition, and thanks to
@@ -57,11 +60,17 @@ versionInfo: GameID
      Extra-special thanks to the Mysterious Strangers who submitted the song "Look Around the Corner" and
      the pseudonym "Robert Whitlock". I hope to learn your identities some day so I can properly thank you here!\b
 
-     Please send feedback to dougorleans@gmail.com. The source code is available (under the AGPLv3) on GitHub,
-     where you can also submit bug reports: http://github.com/dougo/shufflecomp
+     Please feel free to <<link('mailto:dougorleans@gmail.com', 'send me feedback')>>. The source code is
+     available (under the <<aHref('http://www.gnu.org/licenses/agpl-3.0.html', 'AGPLv3')>>) on
+     <<link('http://github.com/dougo/shufflecomp', 'GitHub')>>, where you can also
+     submit bug reports.  The text is licensed under
+     <<aHref('http://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0')>>.
      """;
   }
   showCredit() { showAbout(); }
+  link(href, text) { // for console mode, include the href in the alt text.
+    "<<aHrefAlt(href, text, '<<text>> &lt;<<href>>&gt;')>>";
+  }
 ;
 
 bedroom: Room 'Bedroom'

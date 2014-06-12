@@ -1,31 +1,30 @@
-"Look Around The Corner" is an interactive fiction game for the TADS 3 platform. It was an entry in
-ShuffleComp 2014: http://ifdb.tads.org/viewcomp?id=u92jz7zvslewy4pz
+"Look Around the Corner" is an interactive fiction game for the TADS 3 platform. It was an entry in
+[ShuffleComp 2014](http://ifdb.tads.org/viewcomp?id=u92jz7zvslewy4pz).
 
 Mac OS X build instructions
 ===========================
 
-First, install FrobTADS:
-
-  http://tads.org/frobtads.htm
+First, install [FrobTADS](http://tads.org/frobtads.htm).
 
 Compile with:
-
-  t3make -f shufflecomp
-
+```
+t3make -a -f shufflecomp
+```
 Run with:
-
-  frob lookaroundthecorner
-
-The lookaroundthecorner.t3 file can also be run with QTads.
-
-  http://qtads.sourceforge.net/
+```
+frob lookaroundthecorner
+```
+The `lookaroundthecorner.t3` file can also be run with [QTads](http://qtads.sourceforge.net/).
 
 To compile for Web play:
-
-  t3make -f shufflecomp-web
-
-TODO: this is not actually working for me yet...
-
+```
+t3make -a -f shufflecomp-web
+```
+Run with:
+```
+frob -N 44 lookaroundthecorner-web
+```
+This will output a localhost URL; copy it to your browser to connect to the standalone Web server.
 
 License
 =======
