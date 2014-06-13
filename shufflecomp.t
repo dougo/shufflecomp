@@ -50,8 +50,8 @@ versionInfo: GameID
   showAbout() {
      """
      An interactive fiction (an entry in ShuffleComp 2014) inspired by the song
-     <<link('http://www.youtube.com/watch?v=p4yJp4CLRL4',
-            '"Look Around the Corner" by Quantic & Alice Russell with the Combo Bárbaro.')>>\b
+     <<linkAndURL('http://www.youtube.com/watch?v=p4yJp4CLRL4',
+                  '"Look Around the Corner" by Quantic & Alice Russell with the Combo Bárbaro.')>>\b
 
      Thanks to my testers: Scooter Burch, Juhana Leinonen, Jason McIntosh, Zach Samuels, Carolyn VanEseltine,
      Olly V., and Caleb Wilson.  Also thanks to Sam Kabo Ashwell for organizing the competition, and thanks to
@@ -60,16 +60,24 @@ versionInfo: GameID
      Extra-special thanks to the Mysterious Strangers who submitted the song "Look Around the Corner" and
      the pseudonym "Robert Whitlock". I hope to learn your identities some day so I can properly thank you here!\b
 
-     Please feel free to <<link('mailto:dougorleans@gmail.com', 'send me feedback')>>. The source code is
-     available (under the <<aHref('http://www.gnu.org/licenses/agpl-3.0.html', 'AGPLv3')>>) on
-     <<link('http://github.com/dougo/shufflecomp', 'GitHub')>>, where you can also
+     Please feel free to <<linkAndURL('mailto:dougorleans@gmail.com', 'send me feedback')>>. The source code is
+     available (under the <<link('http://www.gnu.org/licenses/agpl-3.0.html', 'AGPLv3')>>) on
+     <<linkAndURL('http://github.com/dougo/shufflecomp', 'GitHub')>>, where you can also
      submit bug reports.  The text is licensed under
-     <<aHref('http://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0')>>.
+     <<link('http://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0')>>.
      """;
   }
   showCredit() { showAbout(); }
-  link(href, text) { // for console mode, include the href in the alt text.
-    "<<aHrefAlt(href, text, '<<text>> &lt;<<href>>&gt;')>>";
+  link(href, text) {
+    "<a target='_blank' href='<<href>>'><<text>></a>";
+  }
+  linkAndURL(href, text) {
+    if (outputManager.htmlMode) {
+      link(href, text);
+    } else {
+      // No HTML; display the href after the text so it can be copy/pasted.
+      "<<text>> &lt;<<href>>&gt;";
+    }
   }
 ;
 
